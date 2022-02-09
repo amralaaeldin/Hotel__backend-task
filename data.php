@@ -1,61 +1,61 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: GET");
+header("Access-Control-Allow-Headers: *");
+
+require_once('./suppliers.php');
 $init_data = [];
 $data = [];
 
-function replace_key($arr, $oldkey, $newkey, $oldkey2, $newkey2, $oldkey3, $newkey3)
+function replace_key($arr, $oldkey, $newkey)
 {
   $keys = array_keys($arr);
   if (array_key_exists($oldkey, $arr)) {
     $keys[array_search($oldkey, $keys)] = $newkey;
   }
-  if (array_key_exists($oldkey2, $arr)) {
-    $keys[array_search($oldkey2, $keys)] = $newkey2;
-  }
-  if (array_key_exists($oldkey3, $arr)) {
-    $keys[array_search($oldkey3, $keys)] = $newkey3;
-  }
   return $arr = array_combine($keys, $arr);
 }
 
-function myfunction($v)
+function grouping($suppliers, $init_arr)
 {
-  if (gettype($v) === 'string') {
-    return (strlen($v));
+  foreach ($suppliers as $supplier) {
+    $init_arr = [...$init_arr, ...json_decode(file_get_contents($supplier))];
   }
+  return $init_arr;
 }
 
-$supplier1 = json_decode(file_get_contents('https://bit.ly/3GlDsSw'));
-$supplier2 = json_decode(file_get_contents('https://bit.ly/3Gr5T1t'));
-$init_data = array_merge($supplier1, $supplier2);
-
-foreach ($init_data as $nested) {
-  $nested = (array) $nested;
-  if (strpos($nested['Rate'], '*') === 0) {
-    $nested['Rate'] = strlen($nested['Rate']);
+function formatting($init_arr, $arr)
+{
+  foreach ($init_arr as $nested) {
+    $nested = (array) $nested;
+    if (strpos($nested['Rate'], '*') === 0) {
+      $nested['Rate'] = strlen($nested['Rate']);
+    }
+    $nested = replace_key($nested, 'Fare', 'Price');
+    $nested = replace_key($nested, 'Hotel', 'hotelName');
+    $nested = replace_key($nested, 'amenities', 'roomAmenities');
+    $arr[] = $nested;
   }
-  global $data;
-  $data = [...$data, replace_key($nested, 'Hotel', 'hotelName', 'Fare', 'Price', 'amenities', 'roomAmenities')];
+  return $arr;
 }
+
+$init_data = grouping($suppliers, $init_data);
+
+$data = formatting($init_data, $data);
 
 $count = count($data);
 for ($i = 0; $i < $count; $i++) {
-    for ($j = $i + 1; $j < $count; $j++) {
-        if ($data[$i]['Rate'] < $data[$j]['Rate']) {
-            $temp = $data[$i];
-            $data[$i] = $data[$j];
-            $data[$j] = $temp;
-        }
+  for ($j = $i + 1; $j < $count; $j++) {
+    if ($data[$i]['Rate'] < $data[$j]['Rate']) {
+      $temp = $data[$i];
+      $data[$i] = $data[$j];
+      $data[$j] = $temp;
     }
+  }
 }
 
 $json_data = json_encode($data);
 
-
-
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: GET");
-header("Access-Control-Allow-Headers: *");
 print_r($json_data);
-
