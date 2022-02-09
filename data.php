@@ -7,15 +7,12 @@ function replace_key($arr, $oldkey, $newkey, $oldkey2, $newkey2, $oldkey3, $newk
 {
   $keys = array_keys($arr);
   if (array_key_exists($oldkey, $arr)) {
-    $keys = [...$keys];
     $keys[array_search($oldkey, $keys)] = $newkey;
   }
   if (array_key_exists($oldkey2, $arr)) {
-    $keys = [...$keys];
     $keys[array_search($oldkey2, $keys)] = $newkey2;
   }
   if (array_key_exists($oldkey3, $arr)) {
-    $keys = [...$keys];
     $keys[array_search($oldkey3, $keys)] = $newkey3;
   }
   return $arr = array_combine($keys, $arr);
