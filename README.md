@@ -3,4 +3,7 @@ https://gist.github.com/ahmed3mar/483fa6bf1f5bdb8bf58f37fcd538d068
 
 
 ## How to run it
-  - using XAMPP or MAMP or any similar.
+  - clone it.
+  - open the folder in terminal.
+  - enter this command 'php -S localhost:8082'.
+  - go to (http://localhost:8082/data.php)
