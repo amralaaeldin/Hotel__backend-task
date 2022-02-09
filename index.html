@@ -9,7 +9,7 @@
   <body>
     hello world
     <script>
-      fetch("http://localhost/data.php?format=json")
+      fetch("http://localhost:8082/data.php")
         .then((res) => res.json())
         .then((data) => console.log(data));
     </script>
