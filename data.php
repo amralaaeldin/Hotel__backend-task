@@ -41,6 +41,21 @@ function formatting($init_arr, $arr)
   return $arr;
 }
 
+function array_to_xml($data, $xml_data)
+{
+  foreach ($data as $key => $value) {
+    if (is_array($value)) {
+      if (is_numeric($key)) {
+        $key = 'item' . $key; //dealing with <0/>..<n/> issues
+      }
+      $subnode = $xml_data->addChild($key);
+      array_to_xml($value, $subnode);
+    } else {
+      $xml_data->addChild("$key", htmlspecialchars("$value"));
+    }
+  }
+}
+
 $init_data = grouping($suppliers, $init_data);
 
 $data = formatting($init_data, $data);
@@ -56,6 +71,12 @@ for ($i = 0; $i < $count; $i++) {
   }
 }
 
-$json_data = json_encode($data);
-
-print_r($json_data);
+if ($_GET['format'] === 'json') {
+  $json_data = json_encode($data);
+  print_r($json_data);
+}
+if ($_GET['format'] === 'xml') {
+  $xml_data = new SimpleXMLElement('<?xml version="1.0"?><data></data>');
+  array_to_xml($data, $xml_data);
+  print_r($xml_data->asXML());
+}
