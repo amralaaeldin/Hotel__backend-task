@@ -12,6 +12,9 @@
       fetch("http://localhost:8082/data.php?format=json")
         .then((res) => res.json())
         .then((data) => console.log(data));
+      fetch("http://localhost:8082/data.php?format=xml")
+        .then((res) => res.text())
+        .then((data) => console.log(data));
     </script>
   </body>
 </html>
