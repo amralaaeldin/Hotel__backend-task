@@ -1,4 +1,4 @@
-class handling_resources
+class Handling_Resources
 {
   private $init_arr = [];
   static $data = [];
@@ -9,11 +9,11 @@ class handling_resources
       $this->init_arr = [...$this->init_arr, ...json_decode(file_get_contents($supplier))];
     }
 
-    handling_resources::$data = $this->formatting($this->init_arr, handling_resources::$data);
-    handling_resources::$data = $this->sorting(handling_resources::$data);
+    Handling_Resources::$data = $this->formatting($this->init_arr, Handling_Resources::$data);
+    Handling_Resources::$data = $this->sorting(Handling_Resources::$data);
 
     if (isset($_GET['format'])) {
-      $serveAPI = new serve($_GET['format']);
+      $serveAPI = new Serve($_GET['format']);
     }
   }
 
@@ -50,7 +50,7 @@ class handling_resources
           $key = 'item' . $key;
         }
         $subnode = $xml_data->addChild($key);
-        handling_resources::array_to_xml($value, $subnode);
+        Handling_Resources::array_to_xml($value, $subnode);
       } else {
         $xml_data->addChild("$key", htmlspecialchars("$value"));
       }
