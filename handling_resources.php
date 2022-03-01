@@ -13,7 +13,7 @@ class handling_resources
     handling_resources::$data = $this->sorting(handling_resources::$data);
 
     if (isset($_GET['format'])) {
-      $serveAPI = new Serve($_GET['format']);
+      $serveAPI = new serve($_GET['format']);
     }
   }
 
