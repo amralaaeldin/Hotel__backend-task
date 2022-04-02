@@ -8,7 +8,7 @@ header("Access-Control-Allow-Headers: *");
 
 
 
-$serveAPI = new HandlingResources();
+$serveAPI = new Data\HandlingResources();
 
 foreach ($suppliers as $supplier) {
   $serveAPI->init_arr = [...$serveAPI->init_arr, ...json_decode(file_get_contents($supplier))];
