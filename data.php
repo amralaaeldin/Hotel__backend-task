@@ -1,6 +1,7 @@
 <?php
 require_once('./suppliers.php');
 require_once('./HandlingResources.php');
+require_once('./FormatData.php');
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -17,6 +18,11 @@ foreach ($suppliers as $supplier) {
 
 $serveAPI->data = $serveAPI->formatting($serveAPI->init_arr, $serveAPI->data);
 $serveAPI->data = $serveAPI->sorting($serveAPI->data);
-$serveAPI->data = $serveAPI->formatOutput();
 
-printf($serveAPI->data);
+if (isset($_GET['format'])) {
+  $getFormat = ucfirst($_GET['format']);
+  $handleFormat = new $getFormat($serveAPI->data);
+  $serveAPI->data = $handleFormat->formatData();
+
+  printf($serveAPI->data);
+}
