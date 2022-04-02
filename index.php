@@ -1,7 +1,4 @@
 <?php
-require_once('./suppliers.php');
-require_once('./HandlingResources.php');
-
 require_once './vendor/autoload.php';
 
 header("Access-Control-Allow-Origin: *");
