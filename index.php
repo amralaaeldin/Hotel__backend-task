@@ -16,7 +16,7 @@ foreach ($suppliers->suppliers as $supplier) {
   $serveAPI->init_arr = [...$serveAPI->init_arr, ...json_decode(file_get_contents($supplier))];
 }
 
-$serveAPI->data = $serveAPI->formatting($serveAPI->init_arr, $serveAPI->data);
+$serveAPI->data = $serveAPI->format($serveAPI->init_arr, $serveAPI->data);
 $serveAPI->data = $serveAPI->sorting($serveAPI->data);
 
 if (isset($_GET['format'])) {
