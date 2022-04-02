@@ -1,5 +1,7 @@
 <?php
 
+namespace Data;
+
 class HandlingResources
 {
   private $xml_data = null;
