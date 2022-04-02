@@ -32,7 +32,7 @@ class HandlingResources
     return $arr;
   }
 
-  public function sorting($data)
+  public function sort($data)
   {
     $count = count($data);
     for ($i = 0; $i < $count; $i++) {
