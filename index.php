@@ -9,8 +9,10 @@ header("Access-Control-Allow-Headers: *");
 
 
 $serveAPI = new Data\HandlingResources();
+$suppliers = new Data\Suppliers(['https://bit.ly/3GlDsSw', 'https://bit.ly/3Gr5T1t']);
 
-foreach ($suppliers as $supplier) {
+
+foreach ($suppliers->suppliers as $supplier) {
   $serveAPI->init_arr = [...$serveAPI->init_arr, ...json_decode(file_get_contents($supplier))];
 }
 
