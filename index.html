@@ -9,10 +9,10 @@
   <body>
     hello world
     <script>
-      fetch("http://localhost:8081/data.php?format=json")
+      fetch("http://localhost:8082?format=json")
         .then((res) => res.json())
         .then((data) => console.log(data));
-      fetch("http://localhost:8081/data.php?format=xml")
+      fetch("http://localhost:8082?format=xml")
         .then((res) => res.text())
         .then((data) => console.log(data));
     </script>

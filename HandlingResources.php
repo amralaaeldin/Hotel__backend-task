@@ -1,8 +1,9 @@
 <?php
 
+namespace App;
+
 class HandlingResources
 {
-  private $xml_data = null;
   public $init_arr = [];
   public $data = [];
 
