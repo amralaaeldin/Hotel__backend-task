@@ -1,6 +1,6 @@
 <?php
 
-namespace Format;
+namespace App;
 
 class FormatXml extends FormatData
 {
