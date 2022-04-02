@@ -17,7 +17,7 @@ foreach ($suppliers->suppliers as $supplier) {
 }
 
 $serveAPI->data = $serveAPI->format($serveAPI->init_arr, $serveAPI->data);
-$serveAPI->data = $serveAPI->sorting($serveAPI->data);
+$serveAPI->data = $serveAPI->sort($serveAPI->data);
 
 if (isset($_GET['format'])) {
   $getFormat = 'App\Format\Format' . ucfirst($_GET['format']);
