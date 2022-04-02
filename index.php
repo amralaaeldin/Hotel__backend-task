@@ -8,8 +8,8 @@ header("Access-Control-Allow-Headers: *");
 
 
 
-$serveAPI = new Data\HandlingResources();
-$suppliers = new Data\Suppliers(['https://bit.ly/3GlDsSw', 'https://bit.ly/3Gr5T1t']);
+$serveAPI = new App\HandlingResources();
+$suppliers = new App\Suppliers(['https://bit.ly/3GlDsSw', 'https://bit.ly/3Gr5T1t']);
 
 
 foreach ($suppliers->suppliers as $supplier) {
@@ -20,7 +20,7 @@ $serveAPI->data = $serveAPI->formatting($serveAPI->init_arr, $serveAPI->data);
 $serveAPI->data = $serveAPI->sorting($serveAPI->data);
 
 if (isset($_GET['format'])) {
-  $getFormat = 'Format\Format' . ucfirst($_GET['format']);
+  $getFormat = 'App\Format' . ucfirst($_GET['format']);
   $handleFormat = new $getFormat($serveAPI->data);
   $serveAPI->data = $handleFormat->formatData();
 
