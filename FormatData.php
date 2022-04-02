@@ -1,6 +1,6 @@
 <?php
 
-namespace Format;
+namespace App;
 
 abstract class FormatData
 {
