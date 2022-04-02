@@ -15,6 +15,7 @@ class FormatXml extends FormatData
   {
     foreach ($data as $key => $value) {
       if (is_array($value)) {
+        // used ternary operator instead of nested if conditions
         $key = is_numeric($key) ? 'item' . $key : $key;
         $sub_node = $xml_data->addChild($key);
         $this->arrayToXml($value, $sub_node);
