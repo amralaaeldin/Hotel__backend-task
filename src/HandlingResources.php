@@ -16,7 +16,7 @@ class HandlingResources
     return $arr = array_combine($keys, (array) $arr);
   }
 
-  public function formatting($init_arr, $arr)
+  public function format($init_arr, $arr)
   {
     foreach ($init_arr as $nested) {
 
