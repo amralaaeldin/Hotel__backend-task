@@ -1,13 +1,3 @@
 <?php
 
-namespace App;
-
-class Suppliers
-{
-  public $suppliers;
-
-  function __construct(array $suppliers)
-  {
-    $this->suppliers = $suppliers;
-  }
-}
+$suppliers = ['https://bit.ly/3GlDsSw', 'https://bit.ly/3Gr5T1t'];

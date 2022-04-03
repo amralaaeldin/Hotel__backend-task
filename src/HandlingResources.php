@@ -46,4 +46,11 @@ class HandlingResources
     }
     return $data;
   }
+  
+    public function collect(array $suppliers)
+  {
+    foreach ($suppliers as $supplier) {
+      $this->init_arr = [...$this->init_arr, ...json_decode(file_get_contents($supplier))];
+    }
+  }
 }
