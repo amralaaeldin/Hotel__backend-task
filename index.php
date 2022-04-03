@@ -20,9 +20,6 @@ $serveAPI->data = $serveAPI->format($serveAPI->init_arr, $serveAPI->data);
 $serveAPI->data = $serveAPI->sort($serveAPI->data);
 
 if (isset($_GET['format'])) {
-  $getFormat = 'App\Format\Format' . ucfirst($_GET['format']);
-  $handleFormat = new $getFormat($serveAPI->data);
-  $serveAPI->data = $handleFormat->formatData();
-
-  printf($serveAPI->data);
+  $instance = new FormatFactory($serveAPI->data);
+  printf($instance->create());
 }
