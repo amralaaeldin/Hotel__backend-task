@@ -4,19 +4,12 @@ namespace App\Format;
 
 class FormatFactory
 {
-  public $data;
-
-  function __construct($data)
-  {
-    $this->data = $data;
-  }
 
 
-  public function create()
+  public function create($data)
   {
     $getFormat = 'App\Format\Format' . ucfirst($_GET['format']);
-    $handleFormat = new $getFormat($this->data);
-    $this->data = $handleFormat->formatData();
-    return $this->data;
+    $handleFormat = new $getFormat($data);
+    return $handleFormat->formatData();
   }
 }
