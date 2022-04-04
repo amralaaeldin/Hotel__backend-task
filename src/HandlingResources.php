@@ -4,8 +4,7 @@ namespace App;
 
 class HandlingResources
 {
-  public $init_arr = [];
-  public $data = [];
+  private $data = [];
 
   private function replaceKey($arr, $old_key, $new_key)
   {
@@ -16,10 +15,10 @@ class HandlingResources
     return $arr = array_combine($keys, (array) $arr);
   }
 
-  public function format($init_arr, $arr)
+  private function format($init_arr)
   {
+    $arr = [];
     foreach ($init_arr as $nested) {
-
       $nested = (array) $nested;
       if (strpos($nested['Rate'], '*') === 0) {
         $nested['Rate'] = strlen($nested['Rate']);
@@ -32,7 +31,7 @@ class HandlingResources
     return $arr;
   }
 
-  public function sort($data)
+  private function sort($data)
   {
     $count = count($data);
     for ($i = 0; $i < $count; $i++) {
@@ -47,10 +46,20 @@ class HandlingResources
     return $data;
   }
   
-    public function collect(array $suppliers)
+  private function collect(array $suppliers)
   {
     foreach ($suppliers as $supplier) {
-      $this->init_arr = [...$this->init_arr, ...json_decode(file_get_contents($supplier))];
+      $this->data = [...$this->data, ...json_decode(file_get_contents($supplier))];
     }
+    return $this->data;
+  }
+  
+  public function getData(array $suppliers)
+  {
+    $this->data = $this->collect($suppliers);
+    $this->data = $this->format($this->data);
+    $this->data = $this->sort($this->data);
+    
+    return $this->data;
   }
 }
