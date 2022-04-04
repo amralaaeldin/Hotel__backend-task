@@ -15,13 +15,16 @@ class HandlingResources
     return $arr = array_combine($keys, (array) $arr);
   }
 
-  private function format($init_arr)
+    private function format($init_arr)
   {
     $arr = [];
     foreach ($init_arr as $nested) {
       $nested = (array) $nested;
       if (strpos($nested['Rate'], '*') === 0) {
         $nested['Rate'] = strlen($nested['Rate']);
+      }
+      if (array_key_exists('roomAmenities', $nested)) {
+        $nested['roomAmenities'] = explode(',', $nested['roomAmenities']);
       }
       $nested = $this->replaceKey($nested, 'Fare', 'Price');
       $nested = $this->replaceKey($nested, 'Hotel', 'hotelName');
