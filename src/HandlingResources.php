@@ -26,27 +26,15 @@ class HandlingResources
       if (array_key_exists('roomAmenities', $nested)) {
         $nested['roomAmenities'] = explode(',', $nested['roomAmenities']);
       }
-      $nested = $this->replaceKey($nested, 'Fare', 'Price');
-      $nested = $this->replaceKey($nested, 'Hotel', 'hotelName');
-      $nested = $this->replaceKey($nested, 'amenities', 'roomAmenities');
+      $nested = $this->replaceKey($nested, 'Fare', 'price');
+      $nested = $this->replaceKey($nested, 'Price', 'price');
+      $nested = $this->replaceKey($nested, 'Hotel', 'name');
+      $nested = $this->replaceKey($nested, 'hotelName', 'name');
+      $nested = $this->replaceKey($nested, 'Rate', 'rate');
+      $nested = $this->replaceKey($nested, 'roomAmenities', 'amenities');
       $arr[] = $nested;
     }
     return $arr;
-  }
-
-  private function sort($data)
-  {
-    $count = count($data);
-    for ($i = 0; $i < $count; $i++) {
-      for ($j = $i + 1; $j < $count; $j++) {
-        if ($data[$i]['Rate'] < $data[$j]['Rate']) {
-          $temp = $data[$i];
-          $data[$i] = $data[$j];
-          $data[$j] = $temp;
-        }
-      }
-    }
-    return $data;
   }
   
   private function collect(array $suppliers)
@@ -61,7 +49,6 @@ class HandlingResources
   {
     $this->data = $this->collect($suppliers);
     $this->data = $this->format($this->data);
-    $this->data = $this->sort($this->data);
     
     return $this->data;
   }
