@@ -8,12 +8,13 @@ I worked on it using plain PHP, can't forget great help by [Eng. Hoda Hussin](ht
 
 The task is to request several data providers, organize this data to be in the same format, keynames and so on, apply filtering, sorting and paginating.
 
-It's now live on: https://hotels-php-amralaaeldin.000webhostapp.com/
+- Backend side is now live on: https://hotels-php-amralaaeldin.000webhostapp.com/
 
-`Note` This will return all data comes from the providers
+  `Note` This will return all data comes from the providers
 
-I also build client side using React.js dealing with it with a basic, easy UI, you can visit it live on: https://hotels-client-amralaaeldin.vercel.app/
-Code: [Hotel\_\_backend-task-client Repo](https://github.com/amralaaeldin/Hotel__backend-task-client)
+- I also built client side using React.js dealing with it with a basic, easy UI, it is now available live on: https://hotels-client-amralaaeldin.vercel.app/
+
+  `Code` [Hotel\_\_backend-task-client Repo](https://github.com/amralaaeldin/Hotel__backend-task-client)
 
 ## Parameters
 
