@@ -30,3 +30,5 @@ The task is to request several data providers, organize this data to be in the s
 |    max    | required if `filter` is present and no `min`, otherwise optional |     `max=5`      |      `rate`: 1 - 5, `price`: 0 - 20000       |
 
 `Example`: https://hotels-php-amralaaeldin.000webhostapp.com/?format=json&page=1&filter=rate&find=hotel&max=4&min=3&sort-by=rate&sort-type=desc
+
+`Note` the other parameters aren't supported with `format=xml`
