@@ -6,7 +6,7 @@ I worked on it using plain PHP, can't forget great help by [Eng. Hoda Hussin](ht
 
 ## About
 
-The task is to request several data providers, organize this data to be in the same format, keynames and so on, apply filtering, sorting and paginating.
+The task is to request several data providers, organize this data to be in the same format, keynames and so on, apply filtering, sorting and pagination.
 
 - Backend side is now live on: https://hotels-php-amralaaeldin.000webhostapp.com/
 
